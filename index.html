@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<meta charset="utf-8"></meta>
+
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="customInput"></div>
+    <div class="viewHistory"></div>
+    <div class="tableView"></div>
+    <div class="mainView"></div>
+    <div class="splom"></div>
+    <div class="selectionType"></div>
+    <div class="selectionTable"></div>
+    <div class="groupOp"></div>
+    <div class="colorOp"></div>
+    <div class="extra"></div>
+    <div class="saveB"></div>
+  </div>
+
+
+     
+</body>
+
+<script src="static/js/res.js"></script>
+<style>
+html, body, .grid-container { height: 100%; margin: 2px; }
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.1fr 2fr 0.1fr 5fr;
+  grid-template-rows: 0.1fr 8fr 0.1fr 5fr 0.1fr 0.1fr;
+  gap: 0px 0px;
+  grid-template-areas: "customInput splom splom mainView" 
+                       "tableView splom splom mainView" 
+                       "tableView selectionType selectionType extra" 
+                       "tableView selectionTable colorOp viewHistory" 
+                       "tableView selectionTable colorOp viewHistory" 
+                       "tableView groupOp groupOp saveB";
+}
+
+.customInput { grid-area: customInput; }
+
+.viewHistory { grid-area: viewHistory; align-self: end; }
+
+.tableView { grid-area: tableView; }
+
+.mainView { grid-area: mainView; }
+
+.splom { grid-area: splom; }
+
+.selectionType { grid-area: selectionType; }
+
+.selectionTable { grid-area: selectionTable; }
+
+.groupOp { grid-area: groupOp; }
+
+.colorOp { grid-area: colorOp; }
+
+.extra { grid-area: extra; }
+
+.saveB { grid-area: saveB; }
+
+    .selected {
+        opacity: 1 !important;
+        stroke: black;
+        stroke-width: 1px;
+    }
+
+    .active {
+        filter: brightness(75%);
+        background: rgb(255,255,0)
+    }
+    .active2{
+        background-color: #ceca00;
+    }
+    
+    #selectTable {
+    padding: 1px 4px;
+    border: 1px black solid;
+    
+    }
+    
+    #selectTable > tr > td,th {
+        border-bottom: 1px solid #616161;
+        
+        white-space :nowrap
+    }
+    
+    #selectTable > tr:hover {
+        background-color: #56778a;
+        border-bottom: 1px solid #616161;
+       
+    }
+    .buttonIm:hover{
+        filter: brightness(50%);
+    }
+
+    
+    #tableView_table > * >tr > td,th {
+        border: 1px solid black;
+    }
+    
+    #tableView_table > tr:hover {
+        background-color: #56778a;
+        border-bottom: 1px solid #616161;
+    }
+    
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 10;
+
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  width: 120px;
+
+  margin-left: +55px;
+}
+
+
+
+</style>
+
+
+</html>
