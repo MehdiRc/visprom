@@ -6,7 +6,7 @@ exports.indexAToPArray = ( iArray, datum ) => {
     for (i of iArray) {
         pArray.push(datum[Number(i)])
     }
-    console.log("endL")
+    //console.log("endL")
     return pArray;
 }
 exports.pointsAToiArray = (pArray) => {

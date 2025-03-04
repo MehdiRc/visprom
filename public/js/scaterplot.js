@@ -130,7 +130,7 @@
         //adding the points
         let circle = svg.select(".plot-points")
         .selectAll("circle")
-        .data(data, function(d) { return d.id })
+        .data(data.filter(function(d) { return d.visibility == true; }), function(d) {  return d.id })
         
         circle.join("circle")
             .transition()
@@ -150,7 +150,7 @@
             .attr("id", function (d, i) {
                 return "point-"+i
             })
-            .attr("r", (w+h)/(2*90) )
+            .attr("r", (w+h)/(4*90) )
             
 
     }
@@ -234,7 +234,7 @@
         //adding the points
         let circle = svg.select(".plot-points")
         .selectAll("circle")
-        .data(data, function(d) { return d.id })
+        .data(data.filter(function(d) { return d.visibility == true; }), function(d) { return d.id })
         
         circle.join("circle")
         

@@ -2,6 +2,7 @@
 
 //var lasso = require ('./lasso.js')
 const  d3  = require('d3');
+
  
 const scaterplot = require('./scaterplot.js')
 const sploom = require('./splom.js')
@@ -23,33 +24,54 @@ window.$ = $;
 
 let cEnum = {
 
-    RED :       {string : "rgba(255, 0, 0, 0.5)"            , array: [1, 0, 0, 1]          ,  order:0 },
-    GREEN:      {string : "rgba(0, 255, 0, 0.5)"            , array: [0, 1, 0, 1]          ,  order:1 },
-    BLUE:       {string : "rgba(0, 0, 255, 0.5)"            , array: [0, 0, 1, 1]          ,  order:2 },
-    ORANGE:     {string : "rgba(235, 149, 50, 0.5)"         , array: [0.9, 0.6, 0.2, 1]    ,  order:3 },
-    PINK:       {string : "rgba(255, 20, 147, 0.5)"         , array: [1, 0.1, 0.6, 1]      ,  order:4 },
-    CIAN:       {string : "rgba(0,255,255,0.5)"             , array: [0, 1, 1, 1]          ,  order:5 },
+    RED :       {string : "#e66465"                         , array: [1, 0, 0, 1]          ,  order:0 },
+    GREEN:      {string : "#00ff00"            , array: [0, 1, 0, 1]          ,  order:1 },
+    BLUE:       {string : "#0000ff"            , array: [0, 0, 1, 1]          ,  order:2 },
+    ORANGE:     {string : "#eb9532"         , array: [0.9, 0.6, 0.2, 1]    ,  order:3 },
+    PINK:       {string : "#ff1493"         , array: [1, 0.1, 0.6, 1]      ,  order:4 },
+    CIAN:       {string : "#00ffff"             , array: [0, 1, 1, 1]          ,  order:5 },
+    YELLOW :    {string : "#ffff00"          , array:  [1, 1, 0, 1]         ,  order:6 },
+    PURPLE:     {string : "#9500ff"          , array:  [0.6, 0, 1, 1]       ,  order:7 },
+    BROWN:      {string : "#502800"            , array:  [0.4, 0.2, 0, 1]     ,  order:8 },
 
-    YELLOW :    {string : "rgba(255, 255, 0, 0.5)"          , array:  [1, 1, 0, 1]         ,  order:6 },
-    PURPLE:     {string : "rgba(149, 0, 255, 0.5)"          , array:  [0.6, 0, 1, 1]       ,  order:7 },
-    BROWN:      {string : "rgba(80, 40, 0, 0.5)"            , array:  [0.4, 0.2, 0, 1]     ,  order:8 },
+    OLIVE :       {string : "#93c00a"                         , array: [0.576, 0.752, 0.039]          ,  order:9 },
+    RASPBERRY:    {string : "#a23963"            , array: [0.6, 0.2, 0.4]          ,  order:10 },
+    LAVENDER:     {string : "#9c59b1"            , array: [0.6, 0.3, 0.7]          ,  order:11 },
+    GOLD:         {string : "#f1ad13"         , array: [0.9, 0.7, 0.1]    ,  order:12 },
+    STRAWBERRY:   {string : "#bb0346"         , array: [0.7, 0.0, 0.3]      ,  order:13 },
+    JADE:         {string : "#01a586"             , array: [0.0, 0.6, 0.5]          ,  order:14 },
+    GRAPE:        {string : "#6f61ab"          , array:  [0.4, 0.4, 0.7]         ,  order:15 },
+    DUNE:         {string : "#d1b345"          , array:  [0.8, 0.7, 0.3]       ,  order:16 },
+    CLEMENTINE:   {string : "#e67504"            , array:  [0.9, 0.4, 0.0]     ,  order:17 },
+    
 
   };
 
 
 let selections = [
-    {color: cEnum.BLUE  , displayName: "Non Selected"   , cname: "Blue"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:""},
-    {color: cEnum.GREEN , displayName: "Green"          , cname: "Green"  , content: new Set(),  originCol: [], originOP: null,   rep: null, class:""},
-    {color: cEnum.RED   , displayName: "Red"            , cname: "Red"    , content: new Set(),  originCol: [], originOP: null,   rep: null, class:""},
-    {color: cEnum.ORANGE, displayName: "Orange"         , cname: "Orange" , content: new Set(),  originCol: [], originOP: null,   rep: null, class:""},
-    {color: cEnum.PINK  , displayName: "Pink"           , cname: "Pink"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:""},
-    {color: cEnum.CIAN  , displayName: "Cian"           , cname: "Cian"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:""},
+    {color: cEnum.BLUE  , displayName: "Non Selected"   , cname: "Blue"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.GREEN , displayName: "Selection 1"          , cname: "Green"  , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.RED   , displayName: "Selection 2"            , cname: "Red"    , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.ORANGE, displayName: "Selection 3"         , cname: "Orange" , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.PINK  , displayName: "Selection 4"           , cname: "Pink"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.CIAN  , displayName: "Selection 5"           , cname: "Cian"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
 ] 
 
 let reserve = [
-    {color: cEnum.PURPLE , displayName: "Purple" , cname: "Purple"  , content: new Set(),  originCol: [], originOP: null,    rep: null, class:""},
-    {color: cEnum.YELLOW , displayName: "Yellow" , cname:"Yellow"   , content: new Set(),  originCol: [], originOP: null,    rep: null, class:""},
-    {color: cEnum.BROWN  , displayName: "Brown"  , cname: "Brown"   , content: new Set(),  originCol: [] , originOP: null,   rep: null, class:""},
+    {color: cEnum.PURPLE , displayName: "Selection 17" , cname: "Purple"  , content: new Set(),  originCol: [], originOP: null,    rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.YELLOW , displayName: "Selection 16" , cname:"Yellow"   , content: new Set(),  originCol: [], originOP: null,    rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.BROWN  , displayName: "Selection 15"  , cname: "Brown"   , content: new Set(),  originCol: [] , originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    
+    {color: cEnum.OLIVE , displayName: "Selection 14"   , cname: "olive"  , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.RASPBERRY   , displayName: "Selection 13"     , cname: "raspberry"    , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.LAVENDER, displayName: "Selection 12"  , cname: "lavender" , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.GOLD  , displayName: "Selection 11"    , cname: "gold"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.STRAWBERRY  , displayName: "Selection 10"    , cname: "strawberry"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+
+    {color: cEnum.JADE , displayName: "Selection 9"   , cname: "jade"  , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.GRAPE   , displayName: "Selection 8"     , cname: "grape"    , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.DUNE, displayName: "Selection 7"  , cname: "dune" , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
+    {color: cEnum.CLEMENTINE  , displayName: "Selection 6"    , cname: "clementine"   , content: new Set(),  originCol: [], originOP: null,   rep: null, class:"", visibility : true, isolate: false},
 
 ]
 
@@ -73,6 +95,7 @@ let dimensions      = null
 ///////////////
 let mainviewSvg     = null
 let selList         = null
+let colpick         = null
 let selType_buttons = null
 let colorOp_buttons = null
 let grpAct_buttons  = null
@@ -124,6 +147,7 @@ function extendData (d, i){
     d.color = new Set()
     d.pointSize = 0.5
     d.id = i
+    d.visibility = true
     
     return d
 }
@@ -137,7 +161,7 @@ d3.csv("static/data/datasmall.csv" , function(d,i) {return extendData (d,i)} )
    
 
     
-    nonDispDims = 3
+    nonDispDims = 4
     datum = data;
 
     for (const d of datum) {
@@ -145,7 +169,7 @@ d3.csv("static/data/datasmall.csv" , function(d,i) {return extendData (d,i)} )
     }
     
     dimensions = Object.keys(datum[0]).slice(0, - nonDispDims);
-    //console.log(dimensions);
+    //console.lag(dimensions);
     for(d of dimensions){
         dimVisitcount[d] = 0
     }
@@ -161,7 +185,7 @@ d3.csv("static/data/datasmall.csv" , function(d,i) {return extendData (d,i)} )
     updateCountdown = 3 
     //sploom.updateSplom(datum, splom, sampleData, maxSplomAcc,viewVisitcount); 
 
-    //console.log(splom);
+    //console.lag(splom);
     
 
     let mainview = c.select(".mainView").append("div").attr("id","mainview");
@@ -250,16 +274,22 @@ d3.csv("static/data/datasmall.csv" , function(d,i) {return extendData (d,i)} )
     countTable.append("thead").append("tr")
     countTable.append("tbody")
 
-    selList = c.select(".selectionTable").append("table")
-    selList.attr('id',"selectTable")
+    selListDiv = c.select(".selectionTable").append("div")
         .style("width","100%")
         .style("height","75%")
         .style("overflow","auto");
-    
+
+    selList = selListDiv.append("table")
+    selList.attr('id',"selectTable")
+        .style("width","100%")
+
     
     selectionsList(selections, selList);  
     selectionsList(selections, selList);
-    
+    /// color picker ///
+    colpick = c.select(".selectionTable").append("div").attr('id',"colorpicker").attr('class',"popup")
+
+
     //// Buttons //// 
     selType_buttons = c.select(".groupOp").append('div').style("width",300).append('table').attr('id',"selType_buttons")
     .attr("width", 300)
@@ -370,42 +400,155 @@ d3.csv("static/data/datasmall.csv" , function(d,i) {return extendData (d,i)} )
     userId = identify()
 
     if(false){
+        //console.lag("favs loading ON") 
+        loadfavorites(savedFavs,datum,mainviewSvg)
+        //console.lag("favs loading done") 
+    }
+
+    if(false){
         loadHistory(viewHistory,datum,mainviewSvg) 
     }
 })
 
-let loadHistory = (viewHistory,datum,mv) => {     
+let loadHistory = (viewHistory,datum,mv) => {
     d3.json("static/data/history.txt")
     .then(function(data){
        savedEntries = cloneDeep(data)
-       //console.log(data[data.length-1])
+       //console.lag(data[data.length-1])
 
        loadState(data[data.length-3])
-       //console.log(data[data.length-3].mvY ,"   ", mv.attr("yDim") )
+       //console.lag(data[data.length-3].mvY ,"   ", mv.attr("yDim") )
        viewHistory.push({ "xDim": data[data.length-3].mvX ,"yDim": data[data.length-3].mvY, "data": cloneDeep(datum) })
-            //console.log(viewHistory[viewHistory.length-1].data) 
+            ////console.lag(viewHistory[viewHistory.length-1].data) 
     
         loadState(data[data.length-2])
-        //console.log(data[data.length-2].mvY ,"   ", mv.attr("yDim") )
-        viewHistory.push({ "xDim": data[data.length-20].mvX ,"yDim": data[data.length-2].mvY, "data": cloneDeep(datum) })
-            //console.log(viewHistory[viewHistory.length-1].data) 
+        ////console.lag(data[data.length-2].mvY ,"   ", mv.attr("yDim") )
+        viewHistory.push({ "xDim": data[data.length-2].mvX ,"yDim": data[data.length-2].mvY, "data": cloneDeep(datum) })
+            ////console.lag(viewHistory[viewHistory.length-1].data) 
 
         loadState(data[data.length-1])
-        //console.log(data[data.length-1].mvY ,"   ", mv.attr("yDim") )
+        //console.lag(data[data.length-1].mvY ,"   ", mv.attr("yDim") )
         viewHistory.push({ "xDim": data[data.length-1].mvX ,"yDim": data[data.length-1].mvY, "data": cloneDeep(datum) })
-                //console.log(viewHistory[viewHistory.length-1].data) 
+                //console.lag(viewHistory[viewHistory.length-1].data) 
                 setTimeout( ()=>{
                 updateViewHistory(viewHistory)
                 },0 )
-    
-
-
-
-       //pdateViewHistory(viewHistory)
+    //pdateViewHistory(viewHistory)
     //    console.log(savedEntries) 
     //    console.log('loaded')
     })
-    
+}
+
+let loadfavorites = (savedFavs,datum,mv) => {
+    d3.json("static/data/favs.txt")
+    .then(function(data){
+       savedEntries = cloneDeep(data)
+       //console.lag(data[data.length-1])
+
+       if (!dimensions.includes(data[data.length-4].mvX)){
+        polyparser.addPolyDim(data[data.length-4].mvX,datum)
+        dimensions.push(data[data.length-4].mvX)
+        dimVisitcount[data[data.length-4].mvX] = 0
+        for( d of dimensions){
+            viewVisitcount[d+"_"+data[data.length-4].mvX] = 0
+        }
+   }
+   if (!dimensions.includes(data[data.length-4].mvY)){
+        polyparser.addPolyDim(data[data.length-4].mvY,datum)
+        dimensions.push(data[data.length-4].mvY)
+        dimVisitcount[data[data.length-4].mvY] = 0
+        for( d of dimensions){
+            viewVisitcount[d+"_"+data[data.length-4].mvY] = 0
+        }
+   }
+
+   loadState(data[data.length-4])
+   //console.lag(data[data.length-3].mvY ,"   ", mv.attr("yDim") )
+   savedFavs.push({ "xDim": data[data.length-4].mvX ,"yDim": data[data.length-4].mvY, "data": cloneDeep(datum) })
+   savedFavsEntries.push(data[data.length-4])
+
+
+              
+       if (!dimensions.includes(data[data.length-3].mvX)){
+            polyparser.addPolyDim(data[data.length-3].mvX,datum)
+            dimensions.push(data[data.length-3].mvX)
+            dimVisitcount[data[data.length-3].mvX] = 0
+            for( d of dimensions){
+                viewVisitcount[d+"_"+data[data.length-3].mvX] = 0
+            }
+       }
+       if (!dimensions.includes(data[data.length-3].mvY)){
+            polyparser.addPolyDim(data[data.length-3].mvY,datum)
+            dimensions.push(data[data.length-3].mvY)
+            dimVisitcount[data[data.length-3].mvY] = 0
+            for( d of dimensions){
+                viewVisitcount[d+"_"+data[data.length-3].mvY] = 0
+            }
+       }
+
+       loadState(data[data.length-3])
+       //console.lag(data[data.length-3].mvY ,"   ", mv.attr("yDim") )
+       savedFavs.push({ "xDim": data[data.length-3].mvX ,"yDim": data[data.length-3].mvY, "data": cloneDeep(datum) })
+       savedFavsEntries.push(data[data.length-3])
+
+            //console.lag(viewHistory[viewHistory.length-1].data) 
+
+        if (!dimensions.includes(data[data.length-2].mvX)){
+            polyparser.addPolyDim(data[data.length-2].mvX,datum)
+            dimensions.push(data[data.length-2].mvX)
+            dimVisitcount[data[data.length-2].mvX] = 0
+            for( d of dimensions){
+                viewVisitcount[d+"_"+data[data.length-2].mvX] = 0
+            }
+        }
+        if (!dimensions.includes(data[data.length-2].mvY)){
+            polyparser.addPolyDim(data[data.length-2].mvY,datum)
+            dimensions.push(data[data.length-2].mvY)
+            dimVisitcount[data[data.length-2].mvY] = 0
+            for( d of dimensions){
+                viewVisitcount[d+"_"+data[data.length-2].mvY] = 0
+            }
+        }
+
+        loadState(data[data.length-2])
+        //console.lag(data[data.length-2].mvY ,"   ", mv.attr("yDim") )
+        savedFavs.push({ "xDim": data[data.length-2].mvX ,"yDim": data[data.length-2].mvY, "data": cloneDeep(datum) })
+        savedFavsEntries.push(data[data.length-2])
+        
+
+        //console.lag(viewHistory[viewHistory.length-1].data) 
+        if (!dimensions.includes(data[data.length-1].mvX)){
+            polyparser.addPolyDim(data[data.length-1].mvX,datum)
+            dimensions.push(data[data.length-1].mvX)
+            dimVisitcount[data[data.length-1].mvX] = 0
+            for( d of dimensions){
+                viewVisitcount[d+"_"+data[data.length-1].mvX] = 0
+            }
+        }
+        if (!dimensions.includes(data[data.length-1].mvY)){
+            polyparser.addPolyDim(data[data.length-1].mvY,datum)
+            dimensions.push(data[data.length-1].mvY)
+            dimVisitcount[data[data.length-1].mvY] = 0
+            for( d of dimensions){
+                viewVisitcount[d+"_"+data[data.length-1].mvY] = 0
+            }
+        }
+
+        loadState(data[data.length-1])
+        //console.lag(data[data.length-1].mvY ,"   ", mv.attr("yDim") )
+        savedFavs.push({ "xDim": data[data.length-1].mvX ,"yDim": data[data.length-1].mvY, "data": cloneDeep(datum) })
+        savedFavsEntries.push(data[data.length-1])
+
+                //console.lag(viewHistory[viewHistory.length-1].data) 
+                setTimeout( ()=>{
+                updateFavorites(savedFavs)
+                },0 )
+                
+
+            
+                sploom.createSplom(datum,splom,dimensions,sampleData, null)
+                sploom.updateSplom(datum, splom, sampleData, maxSplomAcc,viewVisitcount);
+    })
 }
 
 var idleTimeout
@@ -417,14 +560,14 @@ function addbrush(mv){
     brush                   // Add the brush feature using the d3.brush function
       .extent( [ [0,0], [700 ,700] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
       .on("start brush", function(e) {
-          if(current_color.length ===1){
+          if(current_color.length ===1  && current_color[0].visibility === true){
                 updateChart(mv)
           }
             
         }) // Each time the brush selection changes, trigger the 'updateChart' function
       .on("end", function(e) {
-          
-        //console.log("bang")
+        if(current_color[0].visibility === true){ 
+        //console.log(selections)
 
         let extent = d3.event.selection
         // If no selection, back to initial coordinate. Otherwise, update X axis domain 
@@ -433,13 +576,13 @@ function addbrush(mv){
                 //if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
                 //mainviewSvg.scalex.domain(d3.extent(getcol (datum,mainviewSvg.attr("xDim") )))
                 scaterplot.chooseDims(700,700,datum, d3.select(this).attr("xDim"), d3.select(this).attr("yDim"), mainviewSvg);
-                //console.log("first")
+                //console.lag("first")
             }else{
                 //mainviewSvg.scalex.domain([ mainviewSvg.scalex.invert(extent[0]), mainviewSvg.scalex.invert(extent[1]) ])
                 //mainviewSvg.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
                 let x0 = extent[0][0], x1 = extent[1][0], y0 = extent[0][1], y1 = extent[1][1];
                 scaterplot.chooseDims(700,700,datum, d3.select(this).attr("xDim"), d3.select(this).attr("yDim"), mainviewSvg,{xrange : [x0,x1],yrange : [y0,y1] });
-                //console.log("second")
+                //console.lag("second")
             }
         }
 
@@ -465,15 +608,15 @@ function addbrush(mv){
             
           
             //LOGGING HISTORY
-            //console.log("=================")
-            //console.log( datum)
+            //console.lag("=================")
+            //console.lag( datum)
             viewHistory.push({ "xDim": mv.attr("xDim") ,"yDim": mv.attr("yDim"), "data": cloneDeep(datum ) })
-            //console.log(viewHistory[viewHistory.length-1].data) 
+            //console.lag(viewHistory[viewHistory.length-1].data) 
             setTimeout( ()=>{
             updateViewHistory(viewHistory)
             },0 )
 
-            //console.log("=================")
+            //console.lag("=================")
             let log =  {nameAction :"brush_selection", callparam: {selectionType: current_selectionType ,color: getValuesOfKey("cname",current_color )  }, data : datum, timestamp : Date.now()} 
             let svState = saveState("brush_selection","")
             savedEntries.push(svState)
@@ -486,7 +629,8 @@ function addbrush(mv){
             cache = []
             mv.call(brush.move, null)
             
-          }      
+          }
+        }else{ mv.call(brush.move, null)}      
         })
     );
 }
@@ -494,7 +638,7 @@ function addbrush(mv){
 
 
 function initViewHistory(viewHistory){
-    //console.log(viewHistory)
+    //console.lag(viewHistory)
 
     history.append("div").text("History")
    
@@ -544,11 +688,72 @@ function updateViewHistory(viewHistory){
 }
 
 function updateFavorites(savedFavs){
-    //console.log(viewHistory)
+    //console.lag(viewHistory)
 
     favorites.html("")
     favorites.append("div")
     favorites.append("div").text("Favorites")
+
+    if(savedFavs.length>4){
+        let favSvg3 = favorites.append("svg").attr("class", "favorites");
+        scaterplot.init(favSvg3)
+        scaterplot.chooseDimsSmall(80,80,savedFavs[savedFavs.length-5].data,savedFavs[savedFavs.length-5].xDim,savedFavs[savedFavs.length-5].yDim, favSvg3);
+
+        favSvg3.on("click", function(d, i) {
+            loadState(savedFavsEntries[savedFavsEntries.length-5])
+
+            //LOGGING HISTORY
+            //DONE
+            viewHistory.push({ "xDim": mainviewSvg.attr("xDim") ,"yDim": mainviewSvg.attr("yDim"), "data": cloneDeep(datum) })
+            setTimeout( ()=>{
+                updateViewHistory(viewHistory)
+                },0 )
+
+            let log =  {nameAction :"load_favorite_state", callparam: {xDim: mainviewSvg.attr("xDim") , yDim: mainviewSvg.attr("yDim")}, data : datum, timestamp : Date.now()} 
+            let svState = saveState("load_favorite_state","")
+            savedEntries.push(svState)
+            if(onlineLogActive){
+                firebase.save(svState, globalLoss, userId)
+            }
+            
+            finalLog.push( JSON.stringify(log,Set_toJSON) ) 
+            cache = []     
+            ///////////
+
+
+        });
+    }
+
+    if(savedFavs.length>3){
+        let favSvg3 = favorites.append("svg").attr("class", "favorites");
+        scaterplot.init(favSvg3)
+        scaterplot.chooseDimsSmall(80,80,savedFavs[savedFavs.length-4].data,savedFavs[savedFavs.length-4].xDim,savedFavs[savedFavs.length-4].yDim, favSvg3);
+
+        favSvg3.on("click", function(d, i) {
+            loadState(savedFavsEntries[savedFavsEntries.length-4])
+
+            //LOGGING HISTORY
+            //DONE
+            viewHistory.push({ "xDim": mainviewSvg.attr("xDim") ,"yDim": mainviewSvg.attr("yDim"), "data": cloneDeep(datum) })
+            setTimeout( ()=>{
+                updateViewHistory(viewHistory)
+                },0 )
+
+            let log =  {nameAction :"load_favorite_state", callparam: {xDim: mainviewSvg.attr("xDim") , yDim: mainviewSvg.attr("yDim")}, data : datum, timestamp : Date.now()} 
+            let svState = saveState("load_favorite_state","")
+            savedEntries.push(svState)
+            if(onlineLogActive){
+                firebase.save(svState, globalLoss, userId)
+            }
+            
+            finalLog.push( JSON.stringify(log,Set_toJSON) ) 
+            cache = []     
+            ///////////
+
+
+        });
+    }
+
     if(savedFavs.length>2){
         let favSvg3 = favorites.append("svg").attr("class", "favorites");
         scaterplot.init(favSvg3)
@@ -661,7 +866,7 @@ function updateChart(mv) {
                     p.style("fill", current_color[0].color.string)
                     //let allp = d3.selectAll("#"+p.attr("id"))
                     //.style("fill", current_color.color)
-                    //console.log(current_color[0].content)
+                    //console.lag(current_color[0].content)
                     //minMaxMed(current_color[0].content)
                 }
                 else if(current_selectionType === 2){
@@ -750,7 +955,83 @@ function updateChart(mv) {
     //}catch(error){return false;}
 
   }
+  function setpointvisGloabl(data,selections) {
+    let iso = false
 
+    for (const s of selections) {
+        if (s.isolate === true ){
+            iso = true
+        }
+    }
+
+    for (p of data){
+        if(iso){
+            p.visibility = false
+            for (const s of selections) {
+                    if (s.isolate && s.content.has(p) && s != selections[0] ){
+                        p.visibility = true
+                    }
+            }
+            
+        }else{
+            p.visibility = true
+            for (const s of selections) {
+                if (s.content.has(p) && s != selections[0] ){
+                    p.visibility = (p.visibility && s.visibility)
+                }
+            }
+        }
+
+    }
+    console.log(p.visibility)
+      
+}
+
+  function setpointvisLocal(p,selections) {
+    p.visibility = true
+    
+    let iso = false
+
+    for (const s of selections) {
+        if (s.isolate === true ){
+            iso = true
+        }
+    }
+
+    if(iso){
+        p.visibility = false
+
+        for (const s of selections) {
+                if (s.isolate && s.content.has(p) && s != selections[0] ){
+                    p.visibility = true
+                }
+          }
+          
+    }else{
+        for (const s of selections) {
+            if (s.content.has(p) && s != selections[0] ){
+                p.visibility = (p.visibility && s.visibility)
+            }
+          }
+    }
+      
+
+      
+}
+
+function hexToRgbA(hex,alpha){
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        return [((c>>16)&255)/255, ((c>>8)&255)/255, (c&255)/255 ,alpha ] ;
+    }
+    throw new Error('Bad Hex');
+}
+  
 
 function selectionsList( data, container ){
     let tr= container.selectAll("tr")
@@ -761,14 +1042,87 @@ function selectionsList( data, container ){
         
         enter.append("td")
         //.text( function (d) { return d.color })
-        .append("svg").attr("width", 30).attr("height", 30)
-        .append("rect").attr("width", "100%").attr("height", "100%").attr("fill", function (d) {return d.color.string });
+        .append('input').attr('type','color')
+        .style("width", "30px").style("height", "30px")
+        .style("padding", "0px")
+        .attr("value", function (d) {return d.color.string.substr(0, 7); })
+        .on('input',async function(d){
+            let inputF = d3.select(this)
+            let inputValue = inputF.property("value");
+
+            d.color.string = inputValue.concat("80"); 
+            d.color.array = hexToRgbA(inputValue,1);
+
+        });
+
+        let line = enter.append("td")
+        //.text( function (d) { return d.color })
+        line.append("img")
+        .attr("height", 30)
+        .attr("width", 30)
+        .attr("src",(d) => { 
+            //console.lag(d.originOp)
+            if(d.cname!="Blue"){
+                if(d.visibility === true){ 
+                    return "static/imgs/visible.svg"
+                }
+                else{
+                    return "static/imgs/notvisible.svg"} 
+            }
+        })
+        .on("click", function(d, i) {
+    
+            d.visibility = !d.visibility
+            for (const p of d.content) {
+                setpointvisLocal(p,selections)
+            }
+
+            setTimeout( ()=>{
+                scaterplot.updatePoints(datum, mainviewSvg)
+                sploom.updateSplom(datum, splom, sampleData, maxSplomAcc,viewVisitcount);
+                updateCountdown = 3
+            },0 )
+
+            selectionsList( data, container )
+            selectionsList( data, container )
+
+
+        });
+
+        //isolate
+
+        line.append("img")
+        .attr("height", 30)
+        .attr("width", 30)
+        .attr("src",(d) => { 
+            //console.lag(d.originOp)
+            if(d.cname!="Blue"){
+                if(d.isolate === true){ 
+                    return "static/imgs/target.svg"
+                }
+                else{
+                    return "static/imgs/nottarget.svg"} 
+            }
+        })
+        .on("click", function(d, i) {
+
+            d.isolate = !d.isolate
+            setpointvisGloabl(datum,selections)
+
+            setTimeout( ()=>{
+                scaterplot.updatePoints(datum, mainviewSvg)
+                sploom.updateSplom(datum, splom, sampleData, maxSplomAcc,viewVisitcount);
+                updateCountdown = 3
+            },0 )
+
+            selectionsList( data, container )
+            selectionsList( data, container )
+
+
+        })
 
         enter.append("td")
         .text( function (d) { d.rep = d3.select(this.parentNode); return d.displayName  })
-        
- 
-
         .on("dblclick", function (d) {
             input = d3.select(this)
             input.text("")
@@ -781,7 +1135,7 @@ function selectionsList( data, container ){
                 
                 if( d3.event.keyCode == 13 ){
                     d.displayName = inputValue
-                    //console.log(d.displayName)
+                    //console.lag(d.displayName)
                     selectionsList( data, container )
                     selectionsList( data, container )
 
@@ -789,7 +1143,16 @@ function selectionsList( data, container ){
 
                 }
             })
-          })
+            .on('blur',async function(){
+                let inputF = d3.select(this)
+                let inputValue = inputF.property("value");
+                
+                d.displayName = inputValue
+                    //console.lag(d.displayName)
+                    selectionsList( data, container )
+                    selectionsList( data, container )
+            })
+        })
 
 
         let td = enter.append("td")
@@ -815,7 +1178,7 @@ function selectionsList( data, container ){
         .attr("height", 20)
         .attr("width", 20)
         .attr("src",(d) => { 
-            //console.log(d.originOp)
+            //console.lag(d.originOp)
             if(d.originOp === null || d.originOp === undefined ){ 
                 return "static/imgs/blank.svg"
             }
@@ -919,10 +1282,10 @@ function selectionsList( data, container ){
 //                 substractiveB.classed("active",true)
                 
 //                 current_selectionType = 3
-//                 //console.log(finalLog)
+//                 //console.lag(finalLog)
 //                 ///finalLog.push({nameAction :"add_color", callparam: {addedColor: selections[0] , selectionsBefore : selections }} ) //, data : datum, timestamp : Date.now()} )
                
-//                 //console.log(finalLog.join("_"))
+//                 //console.lag(finalLog.join("_"))
                
 //                 //download(Date.now()+".txt", finalLog)
 //              });
@@ -1138,10 +1501,10 @@ function selectionsTypeChooser(container){
                 zoomB.classed("active",false)
 
                 current_selectionType = 3
-                //console.log(finalLog)
+                //console.lag(finalLog)
                 ///finalLog.push({nameAction :"add_color", callparam: {addedColor: selections[0] , selectionsBefore : selections }} ) //, data : datum, timestamp : Date.now()} )
                
-                //console.log(finalLog.join("_"))
+                //console.lag(finalLog.join("_"))
                
                 //download(Date.now()+".txt", finalLog)
              });
@@ -1165,10 +1528,10 @@ function selectionsTypeChooser(container){
             zoomB.classed("active",true)
             
             current_selectionType = 4
-            //console.log(finalLog)
+            //console.lag(finalLog)
             ///finalLog.push({nameAction :"add_color", callparam: {addedColor: selections[0] , selectionsBefore : selections }} ) //, data : datum, timestamp : Date.now()} )
             
-            //console.log(finalLog.join("_"))
+            //console.lag(finalLog.join("_"))
             
             //download(Date.now()+".txt", finalLog)
             });
@@ -1285,6 +1648,7 @@ function selectionsTypeChooser(container){
                         },0 )
                         
                         setTimeout( ()=>{
+                            
                             sploom.updateSplom(datum, splom, sampleData,maxSplomAcc,viewVisitcount);
                             updateCountdown = 3 
                         },0 )
@@ -1408,6 +1772,11 @@ let custDim_input = (container) => {
        
                 polyparser.addPolyDim(inputValue,datum)
                 dimensions.push(inputValue)
+                dimVisitcount[inputValue] = 0
+                for( d of dimensions){
+                    viewVisitcount[d+"_"+inputValue] = 0
+                }
+                    
             
                 sploom.createSplom(datum,splom,dimensions,sampleData, null)
                 sploom.updateSplom(datum, splom, sampleData, maxSplomAcc,viewVisitcount);
@@ -1516,7 +1885,7 @@ function GroupActionChooser(container){
             .attr("width", width)
 
             .on("click", function(d, i) {
-                //console.log(current_color)
+                //console.lag(current_color)
           
                 let newS = sel.add(reserve, selections)
                 if(newS !== undefined){
@@ -1573,7 +1942,7 @@ function GroupActionChooser(container){
 
 function updateTableView(data, container){
     setRanges(data, dimensions)
-    //console.log(ranges)
+    //console.lag(ranges)
     //container.append("tr")
     //.append("td").text("hello")
     container.select("thead").html("")
@@ -1602,14 +1971,14 @@ function updateTableView(data, container){
                 let bbb = -1
                 let bb  = Array.from(b[d])
                 if( bb.length>0 ){ 
-                    //console.log(bb)
+                    //console.lag(bb)
                      bbb = bb[0].order
                 } 
 
                 return aaa - bbb;
             })
         }else{
-            //console.log(d3.select(this).text())
+            //console.lag(d3.select(this).text())
             tr.sort(function(a, b){
                 return b[d] - a[d];
             })
@@ -1646,10 +2015,10 @@ function updateTableView(data, container){
     .selectAll("th") 
     .data( [...dimensions] )
 
-    //console.log([...dimensions] )
+    //console.lag([...dimensions] )
     let thEnter3 = minMaxDisplay.join("th")
     .text((d)=>{
-       //console.log(variance[d], mean[d],ranges[d], MinOrMax(variance[d], mean[d],ranges[d]) ); 
+       //console.lag(variance[d], mean[d],ranges[d], MinOrMax(variance[d], mean[d],ranges[d]) ); 
        return MinOrMax(variance[d], mean[d],ranges[d])
     })
  
@@ -1716,7 +2085,7 @@ const uni = ( acc , sel) =>{
 const doUnion = ( selectArr , resultSelection) =>{
     
     let res = selectArr.reduce(uni, [] );
-    //console.log(res)
+    //console.lag(res)
 
     resultSelection.content = new Set(res);
     resultSelection.originCol = selectArr ;
@@ -1899,13 +2268,13 @@ const minMaxMed = (selcontent, dimensions,data) => {
                  
     } 
 
-    //console.log (variance)
-    //console.log (mean)
+    //console.lag (variance)
+    //console.lag (mean)
     
 } 
 
 const MinOrMax = (variance, mean, range) => {
-    //console.log(range)
+    //console.lag(range)
     
     let min=parseFloat(range[0])
     let max=parseFloat(range[1])
@@ -1931,9 +2300,9 @@ const MinOrMax = (variance, mean, range) => {
             return "Max";
         }
         else{
-            //console.log("min:",min) 
-            //console.log("max:",max) 
-            //console.log("mean:",mean)   
+            //console.lag("min:",min) 
+            //console.lag("max:",max) 
+            //console.lag("mean:",mean)   
             return "/"
         }
     }else{
@@ -2020,7 +2389,7 @@ let getValuesOfKey = (key, arr) =>{
     }
 
     return entry
-    //console.log(entry)
+    //console.lag(entry)
 
   }
 
@@ -2033,6 +2402,13 @@ let getValuesOfKey = (key, arr) =>{
     current_color = []
     viewVisitcount = entry.viewsCount
 
+    viewToDimCount()
+
+    Object.keys(maxSplomAcc).forEach(function(key) {
+        maxSplomAcc[key] = 0
+    })
+    maxSplomAcc["v"] = 1
+    
     for ( d of datum ){
         d.color.clear()
     }
@@ -2044,15 +2420,17 @@ let getValuesOfKey = (key, arr) =>{
     }
 
     Object.keys(entry.selections).forEach(function(s) {
-        let temp = colPool.find(itm=>itm.cname === s)
-        selections.push(temp)
-        temp.displayName = entry.selections[s].dispName
-        temp.content = new Set(loader.indexAToPArray(entry.selections[s].points, datum))
+            let temp = colPool.find(itm=>itm.cname === s)
+            selections.push(temp) 
+            temp.displayName = entry.selections[s].dispName
+            temp.content = new Set(loader.indexAToPArray(entry.selections[s].points, datum))
 
-        for(p of entry.selections[s].points ){
-            datum[p].color.add(temp.color)
-        }
-
+            for(p of entry.selections[s].points ){
+                if(temp.color != selections[0].color){
+                    datum[p].color.add(temp.color)
+                }
+                
+            }
     });
 
     for ( r of entry.reserve ){
@@ -2156,13 +2534,16 @@ let getValuesOfKey = (key, arr) =>{
         });     
 
 
-        //console.log("updatedS")
+        //console.lag("updatedS")
     },0 )
 
   }
 
 
   function updateCountTable(data, container){
+   
+    //console.log(dimVisitcount)
+    //console.log(totalDimVisitcount)
 
     setRanges(data, dimensions)
     container.select("thead").html("")
@@ -2195,10 +2576,10 @@ let getValuesOfKey = (key, arr) =>{
     .selectAll("th") 
     .data( [...dimensions] )
 
-    //console.log([...dimensions] )
+    //console.lag([...dimensions] )
     let thEnter3 = minMaxDisplay.join("th")
     .text((d)=>{
-       //console.log(variance[d], mean[d],ranges[d], MinOrMax(variance[d], mean[d],ranges[d]) ); 
+       //console.lag(variance[d], mean[d],ranges[d], MinOrMax(variance[d], mean[d],ranges[d]) ); 
        return MinOrMax(variance[d], mean[d],ranges[d])
     })
  
@@ -2218,7 +2599,23 @@ let resetProv = () => {
     })
     maxSplomAcc["v"] = 1
 
-    
+     
     totalDimVisitcount = 0
+
+}
+
+let viewToDimCount = () => {
+    Object.keys(dimVisitcount).forEach(function(key) {
+        dimVisitcount[key] = 0
+    }) 
+    totalDimVisitcount  = 0
+
+    for(ds of Object.keys(viewVisitcount)){
+        let d = ds.split('_')
+        //console.log(d)
+        dimVisitcount[d[0]] += viewVisitcount[ds]
+        dimVisitcount[d[1]] += viewVisitcount[ds]
+        totalDimVisitcount  += viewVisitcount[ds]
+    }
 
 }
